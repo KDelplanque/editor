@@ -15,6 +15,19 @@ public class LayerTest extends TestCase {
         assertEquals(layer.get(0).getID(), oldID + 2);
     }
 
+    public void testSize() throws Exception {
+        Group g = new Group();
+        Square s = new Square(new Point(0,0), 5);
+        Circle c = new Circle(new Point(5,5), 4);
+
+        g.add(s);
+        g.add(c);
+
+        Layer l = new Layer();
+        l.add(g);
+        assertEquals(l.getObjectNumber(), 2);
+    }
+
     public void testJSON() throws Exception {
         Layer l = new Layer();
         Square s = new Square(new Point(0, 0), 5);

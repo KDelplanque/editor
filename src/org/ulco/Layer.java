@@ -26,7 +26,15 @@ public class Layer {
     }
 
     public int getObjectNumber() {
-        return m_list.size();
+        int size = 0;
+        for (int i = 0; i < m_list.size(); ++i) {
+            if(m_list.elementAt(i) instanceof Group)
+                size += ((Group) m_list.elementAt(i)).size();
+            else{
+                size++;
+            }
+        }
+        return size;
     }
 
     public int getID() {
