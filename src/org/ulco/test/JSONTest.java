@@ -30,8 +30,8 @@ public class JSONTest extends TestCase {
         String json = "{ type: group, objects : { { type: square, center: { type: point, x: 0.0, y: 0.0 }, length: 5.0 }, " +
                 "{ type: circle, center: { type: point, x: 5.0, y: 5.0 }, radius: 4.0 } }, groups : {  } }";
 
-        assertTrue(JSON.parseGroup(json) instanceof Group);
-        assertEquals(JSON.parseGroup(json).toString(), "group[[square[point[0.0,0.0],5.0], circle[point[5.0,5.0],4.0]],[]]");
+        assertTrue(JSON.parse(json) instanceof Group);
+        assertEquals(JSON.parse(json).toString(), "group[[square[point[0.0,0.0],5.0], circle[point[5.0,5.0],4.0]],[]]");
     }
 
     public void testParseGroup2() throws Exception {
@@ -40,8 +40,8 @@ public class JSONTest extends TestCase {
                 "y: 0.0 }, length: 5.0 }, { type: circle, center: { type: point, x: 5.0, y: 5.0 }, radius: 4.0 } }, " +
                 "groups : {  } } } }";
 
-        assertTrue(JSON.parseGroup(json) instanceof Group);
-        assertEquals(JSON.parseGroup(json).toString(), "group[[rectangle[point[-6.0,10.0],5.2,9.0]],[group[[square[point[0.0,0.0],5.0], circle[point[5.0,5.0],4.0]],[]]]]");
+        assertTrue(JSON.parse(json) instanceof Group);
+        assertEquals(JSON.parse(json).toString(), "group[[rectangle[point[-6.0,10.0],5.2,9.0]],[group[[square[point[0.0,0.0],5.0], circle[point[5.0,5.0],4.0]],[]]]]");
     }
 
     public void testParseLayer() throws Exception {

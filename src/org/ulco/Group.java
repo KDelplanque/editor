@@ -129,71 +129,54 @@ public class Group extends GraphicsObject{
         return size;
     }
 
-         public String toJson() {
-             String str = "{ type: group, objects : { ";
+     public String toJson() {
+         String str = "{ type: group, objects : { ";
 
-             for (int i = 0; i < m_objectList.size(); ++i) {
-                 GraphicsObject element = m_objectList.elementAt(i);
-                    if(!(element instanceof Group)) {
-                        str += element.toJson();
-                        if (i < m_objectList.size() - 1) {
-                            str += ", ";
-                        }
+         for (int i = 0; i < m_objectList.size(); ++i) {
+             GraphicsObject element = m_objectList.elementAt(i);
+                if(!(element instanceof Group)) {
+                    str += element.toJson();
+                    if (i < m_objectList.size() - 1) {
+                        str += ", ";
                     }
-             }
-             str += " }, groups : { ";
-
-             for (int i = 0; i < m_objectList.size(); ++i) {
-                 GraphicsObject element = m_objectList.elementAt(i);
-                    if(element instanceof Group)
-                 str += element.toJson();
-             }
-             return str + " } }";
+                }
          }
+         str += " }, groups : { ";
+
+         for (int i = 0; i < m_objectList.size(); ++i) {
+             GraphicsObject element = m_objectList.elementAt(i);
+                if(element instanceof Group)
+             str += element.toJson();
+         }
+         return str + " } }";
+     }
 
 
-    /*
-    public String toJson() {
-        String str = "{ type: group, objects : { ";
-        String strg="";
-
-        for (int i = 0; i < m_objectList.size(); ++i) {
-
-                str += m_objectList.elementAt(i).toJson();
-                if (i < m_objectList.size() - 1) {
-                    str += ", ";
-                 }
-
-            if (m_objectList.elementAt(i) instanceof Group) {
-                strg += m_objectList.elementAt(i).toJson();
-
-            }
-
-        }
-        str+=" }, groups : { ";
-        str += strg;
-
-        return str + " } }";
-    }
-*/
     public String toString() {
+
         String str = "group[[";
 
         for (int i = 0; i < m_objectList.size(); ++i) {
-            if(m_objectList.elementAt(i) instanceof GraphicsObject) {
-                GraphicsObject element = m_objectList.elementAt(i);
-
-                str += element.toString();
-                if (i < m_objectList.size() - 1) {
+            GraphicsObject element = m_objectList.elementAt(i);
+            if(!(element instanceof Group)) {
+                if (!str.equals("group[[")) {
                     str += ", ";
                 }
-            }else{
-                str += "],[";
-                str += m_objectList.elementAt(i).toString();
+                str += element.toString();
+
             }
         }
 
+        str += "],[";
+
+        for (int i = 0; i < m_objectList.size(); ++i) {
+            GraphicsObject element = m_objectList.elementAt(i);
+            if(element instanceof Group)
+                str += element.toString();
+        }
         return str + "]]";
+
+
     }
 
 
