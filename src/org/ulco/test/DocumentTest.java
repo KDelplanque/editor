@@ -67,13 +67,20 @@ public class DocumentTest extends TestCase {
     }
 
     public void testConstructorGrid() throws Exception {
-        Document document = new Document(new Point(0,0), 3, 3, 5);
+
+        Builder builder = new Builder();
+        Document document = builder.createGrid(new Point(0, 0), 3, 3, 5);
+
 
         assertEquals(document.getObjectNumber(), 9);
         assertEquals(document.getLayerNumber(), 1);
     }
 
     public void testConstructorCircle() throws Exception {
-        assertEquals(new Document(new Point(0,0), 4, 3., 4.).getObjectNumber(), 4);
+
+        Builder builder = new Builder();
+        Document document = builder.createCircle(new Point(0, 0), 4, 3., 4.);
+
+        assertEquals(document.getObjectNumber(), 4);
     }
 }
