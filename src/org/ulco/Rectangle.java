@@ -32,6 +32,12 @@ public class Rectangle extends GraphicsObject {
                 ((center.getY() - pt.getY()) * (center.getY() - pt.getY()))) <= distance;
     }
 
+    public GraphicsObjects returnElement(){
+        GraphicsObjects go = new GraphicsObjects();
+        go.add(this);
+        return go;
+    }
+
     void move(Point delta) { m_origin.move(delta); }
 
     public String toJson() {
@@ -41,6 +47,8 @@ public class Rectangle extends GraphicsObject {
     public String toString() {
         return "rectangle[" + m_origin.toString() + "," + m_height + "," + m_width + "]";
     }
+
+    public int size(){return 1;}
 
     private final Point m_origin;
     private final double m_height;

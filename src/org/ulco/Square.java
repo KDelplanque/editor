@@ -39,6 +39,14 @@ public class Square extends GraphicsObject {
         return "square[" + m_origin.toString() + "," + m_length + "]";
     }
 
+    public int size(){return 1;}
+
+    public GraphicsObjects returnElement(){
+        GraphicsObjects go = new GraphicsObjects();
+        go.add(this);
+        return go;
+    }
+
     private final Point m_origin;
     private final double m_length;
 }

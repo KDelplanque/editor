@@ -12,7 +12,7 @@ public class Group extends GraphicsObject{
     public Group() {
 
         m_objectList = new Vector<GraphicsObject>();
-        m_ID = ++ID.ID;
+        m_ID = ID.getInstance().newId();
 
     }
 
@@ -53,8 +53,17 @@ public class Group extends GraphicsObject{
 
     @Override
     boolean isClosed(Point pt, double distance) {
-        return false;
+
+        if(m_objectList.size()==0) return false;
+
+        for (GraphicsObject object :  m_objectList) {
+            if(!(object.isClosed(pt,distance))){
+                return false;
+            }
+        }
+        return true;
     }
+
 
     public void move(Point delta) {
         Group g = new Group();
@@ -65,6 +74,15 @@ public class Group extends GraphicsObject{
             element.move(delta);
         }
 
+    }
+
+    public GraphicsObjects returnElement(){
+        GraphicsObjects go = new GraphicsObjects();
+        for (Object o : m_objectList) {
+            GraphicsObject element = (GraphicsObject) (o);
+            go.addAll(element.returnElement());
+        }
+        return go;
     }
 
     private int searchSeparator(String str) {
@@ -120,11 +138,7 @@ public class Group extends GraphicsObject{
     public int size() {
         int size = 0;
         for (int i = 0; i < m_objectList.size(); ++i) {
-            if(m_objectList.elementAt(i) instanceof Group)
-             size += ((Group) m_objectList.elementAt(i)).size();
-            else{
-                size++;
-            }
+            size+=m_objectList.elementAt(i).size();
         }
         return size;
     }

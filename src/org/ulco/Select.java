@@ -5,12 +5,14 @@ package org.ulco;
  */
 public class Select {
 
+
+
     public static GraphicsObjects select(Point pt, double distance,Layer l) {
         GraphicsObjects list = new GraphicsObjects();
 
         for (GraphicsObject object : l.getM_list()) {
             if (object.isClosed(pt, distance)) {
-                list.add(object);
+                list.addAll(object.returnElement());
             }
         }
         return list;

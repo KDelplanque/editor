@@ -6,7 +6,7 @@ import org.ulco.*;
 public class LayerTest extends TestCase {
     public void testType() throws Exception {
         Document document = new Document();
-        int oldID = ID.ID;
+        int oldID = ID.getInstance().ID;
         Layer layer = document.createLayer();
 
         layer.add(new Square(new Point(2, 8), 10));
@@ -26,6 +26,20 @@ public class LayerTest extends TestCase {
         Layer l = new Layer();
         l.add(g);
         assertEquals(l.getObjectNumber(), 2);
+    }
+
+    public void testClosed() throws Exception {
+        Layer layer = new Layer();
+        Group g = new Group();
+        Circle c = new Circle(new Point(2, 8), 10);
+        Square s = new Square(new Point(-2, -3), 3);
+
+        g.add(c);
+        g.add(s);
+        layer.add(g);
+        System.out.print(layer.select(new Point(1, 1), 8).size());
+        assertTrue(layer.select(new Point(1, 1), 8).size() == 2);
+
     }
 
     public void testJSON() throws Exception {
