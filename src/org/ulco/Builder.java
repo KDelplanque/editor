@@ -9,7 +9,7 @@ public class Builder {
 
     public Document createGrid(Point origin, int line, int column, double length){
         Document d = new Document();
-        
+
         Layer layer = d.createLayer();
 
         for (int indexX = 0; indexX < column; ++indexX) {

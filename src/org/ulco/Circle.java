@@ -24,8 +24,7 @@ public class Circle extends GraphicsObject {
     public Point getCenter() { return m_center; }
 
     public boolean isClosed(Point pt, double distance) {
-        return Math.sqrt((m_center.getX() - pt.getX()) * (m_center.getX() - pt.getX()) +
-                ((m_center.getY() - pt.getY()) * (m_center.getY() - pt.getY()))) <= distance;
+       return Search.check(pt,distance,m_center);
     }
 
     void move(Point delta) { m_center.move(delta); }

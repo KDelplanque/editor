@@ -7,6 +7,10 @@ public class Rectangle extends GraphicsObject {
         this.m_width = width;
     }
 
+    protected Rectangle(){
+
+    }
+
     public Rectangle(String json) {
         String str = json.replaceAll("\\s+","");
         int centerIndex = str.indexOf("center");
@@ -28,8 +32,7 @@ public class Rectangle extends GraphicsObject {
     public boolean isClosed(Point pt, double distance) {
         Point center = new Point(m_origin.getX() + m_width / 2, m_origin.getY() + m_height / 2);
 
-        return Math.sqrt((center.getX() - pt.getX()) * (center.getX() - pt.getX()) +
-                ((center.getY() - pt.getY()) * (center.getY() - pt.getY()))) <= distance;
+       return Search.check(pt,distance,center);
     }
 
     public GraphicsObjects returnElement(){
@@ -50,7 +53,7 @@ public class Rectangle extends GraphicsObject {
 
     public int size(){return 1;}
 
-    private final Point m_origin;
-    private final double m_height;
-    private final double m_width;
+    protected Point m_origin;
+    protected double m_height;
+    protected double m_width;
 }

@@ -23,6 +23,8 @@ abstract public class GraphicsObject {
 
     abstract public int size();
 
+
+
     private int m_ID;
 
 
